@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function (event) {
+                event.preventDefault();
+                var username = $('#name').val();
+                var password = $('#password').val();
+                $.post( "http://localhost:8000/api/login",{Username: username, Password: password}, function( data ) {
+                    $('ul').append('<li>'+ JSON.stringify(data) +'</li>');
+                });
+            });
+        });
+    </script>
+    <ul>
+    </ul>
+    <form method="get" action="">
+        <input id="name" type="text">
+        <input id= "password" type="password">
+        <input type="submit">
+    </form>
+</body>
+</html>
