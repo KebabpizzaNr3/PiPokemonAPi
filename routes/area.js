@@ -4,7 +4,7 @@ module.exports = function (apiRoutes,connection) {
     apiRoutes.get('/area',function (req,res) {
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.Area;';
+            'FROM pokemon.Area;';
 
         connection.query(queryString, function (err, rows, fields) {
             if (err) {
@@ -34,7 +34,7 @@ module.exports = function (apiRoutes,connection) {
 
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.LevelHasMonster ' +
+            'FROM pokemon.LevelHasMonster ' +
             'WHERE areaId=?;';
 
         connection.query(queryString,[areaId], function (err, rows, fields) {
@@ -65,7 +65,7 @@ module.exports = function (apiRoutes,connection) {
 
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.MapItems ' +
+            'FROM pokemon.MapItems ' +
             'WHERE areaId=?;';
 
         connection.query(queryString,[areaId], function (err, rows, fields) {
@@ -88,7 +88,7 @@ module.exports = function (apiRoutes,connection) {
         if(areaName)
         {
             var queryString = 'SELECT * ' +
-                'FROM Pallettown.Area ' +
+                'FROM pokemon.Area ' +
                 'WHERE name=?;';
 
             connection.query(queryString,[areaName], function (err, rows, fields) {
@@ -118,7 +118,7 @@ module.exports = function (apiRoutes,connection) {
         if(areaId)
         {
             var queryString = 'SELECT * ' +
-                'FROM Pallettown.Area ' +
+                'FROM pokemon.Area ' +
                 'WHERE id=?;';
 
             connection.query(queryString,[areaId], function (err, rows, fields) {

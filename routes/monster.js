@@ -7,7 +7,7 @@ module.exports = function (apiRoutes,connection) {
     apiRoutes.get('/monster',function (req,res) {
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.Monster;';
+            'FROM pokemon.Monster;';
 
         connection.query(queryString, function (err, rows, fields) {
             if (err) {
@@ -36,7 +36,7 @@ module.exports = function (apiRoutes,connection) {
         }
 
         var qureyString = 'SELECT * ' +
-            'FROM Pallettown.Monster ' +
+            'FROM pokemon.Monster ' +
             'WHERE Monster.Name = ?;';
 
         connection.query(qureyString,[monsterName],function (err, rows, fields) {
@@ -67,7 +67,7 @@ module.exports = function (apiRoutes,connection) {
         }
 
         var qureyString = 'SELECT * ' +
-            'FROM Pallettown.Monster ' +
+            'FROM pokemon.Monster ' +
             'WHERE Monster.id = ?;';
 
         connection.query(qureyString,[monsterId],function (err, rows, fields) {
@@ -92,7 +92,7 @@ module.exports = function (apiRoutes,connection) {
         var types = monsterType.split(",");
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.Monster ' +
+            'FROM pokemon.Monster ' +
             "WHERE Monster.type IN (?";
 
         if(types.length > 1) {
@@ -127,7 +127,7 @@ module.exports = function (apiRoutes,connection) {
         var monsterIds = JSON.parse(req.params.id);
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.MonstersAttack ' +
+            'FROM pokemon.MonstersAttack ' +
             'WHERE monsterId IN (?';
 
           for (var i = 1; i < monsterIds.length; i++) {

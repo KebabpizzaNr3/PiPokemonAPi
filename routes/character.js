@@ -10,7 +10,7 @@ module.exports = function (apiRoutes,connection) {
         if(CharacterId)
         {
             var queryString = 'SELECT * ' +
-                'FROM Pallettown.Character ' +
+                'FROM pokemon.Character ' +
                 'WHERE Character.id = ?;';
 
             connection.query(queryString,[CharacterId],function (err,rows,fields){
@@ -32,7 +32,7 @@ module.exports = function (apiRoutes,connection) {
         if(AreaId)
         {
             var queryString = 'SELECT * ' +
-                'FROM Pallettown.Character ' +
+                'FROM pokemon.Character ' +
                 'WHERE Character.AreaId = ?;';
 
             connection.query(queryString,[AreaId],function (err,rows,fields){
@@ -54,8 +54,8 @@ module.exports = function (apiRoutes,connection) {
         if(characterId)
         {
         var queryString =  "SELECT c.*, i.name, i.description " +
-                           "FROM Pallettown.CharactersItem as c " +
-                           "INNER JOIN Pallettown.Item as i " +
+                           "FROM pokemon.CharactersItem as c " +
+                           "INNER JOIN pokemon.Item as i " +
                            "ON c.itemId = i.idItem " +
                            "WHERE c.characterId = ?;";
 
@@ -116,16 +116,16 @@ module.exports = function (apiRoutes,connection) {
               'a4.animation as a4Animation, ' +
               'a4.power as a4Power ' +
 
-              'FROM Pallettown.CharactersMonster as c ' +
-              'INNER JOIN Pallettown.Monster as m ' +
+              'FROM pokemon.CharactersMonster as c ' +
+              'INNER JOIN pokemon.Monster as m ' +
               'ON c.monsterId=m.id ' +
-              'INNER JOIN Pallettown.Attack as a1 ' +
+              'INNER JOIN pokemon.Attack as a1 ' +
               'ON c.attackId1 = a1.id ' +
-              'INNER Join Pallettown.Attack as a2 ' +
+              'INNER Join pokemon.Attack as a2 ' +
               'ON c.attackId2 = a2.id ' +
-              'INNER Join Pallettown.Attack as a3 ' +
+              'INNER Join pokemon.Attack as a3 ' +
               'ON c.attackId3 = a3.id ' +
-              'INNER Join Pallettown.Attack as a4 ' +
+              'INNER Join pokemon.Attack as a4 ' +
               'ON c.attackId4 = a4.id ' +
               'WHERE c.characterId = ?;';
 
@@ -133,11 +133,11 @@ module.exports = function (apiRoutes,connection) {
 
 
 
-            //  'SELECT Pallettown.CharactersMonster.*, Pallettown.Monster.name, Pallettown.Monster.type ' +
-            //     'FROM Pallettown.CharactersMonster ' +
-            //     'INNER JOIN Pallettown.Monster ' +
-            //     'ON Pallettown.CharactersMonster.monsterId=Pallettown.Monster.id ' +
-            //     'WHERE Pallettown.CharactersMonster.characterId = ?;';
+            //  'SELECT pokemon.CharactersMonster.*, pokemon.Monster.name, pokemon.Monster.type ' +
+            //     'FROM pokemon.CharactersMonster ' +
+            //     'INNER JOIN pokemon.Monster ' +
+            //     'ON pokemon.CharactersMonster.monsterId=pokemon.Monster.id ' +
+            //     'WHERE pokemon.CharactersMonster.characterId = ?;';
 
 
             connection.query(queryString,[characterId],function (err,rows,fields){
@@ -168,7 +168,7 @@ module.exports = function (apiRoutes,connection) {
 
         items.forEach(function(item,index){
           var queryString = 'UPDATE' +
-           "`Pallettown`.`CharactersItem` SET `amount`=? WHERE `characterId`=? AND `itemId` = ?;";
+           "`pokemon`.`CharactersItem` SET `amount`=? WHERE `characterId`=? AND `itemId` = ?;";
 
            connection.query(queryString,[item,characterId,(index+1)],function (err,rows,fields){
              if(err)
@@ -223,7 +223,7 @@ module.exports = function (apiRoutes,connection) {
         var mess = "Monster updated";
 
         var queryString = 'UPDATE' +
-         "`Pallettown`.`CharactersMonster` SET `monsterId`=?, `attackId1`=?, `attackId2`=?, `attackId3`=?, `attackId4`=?, `level`=?, `slotNr`=?, `health`=?,`mana`=?, `speed`=?, `attack`=?, `defense`=?, `maxMana`=?, `maxHealth`=?,`exp`=? WHERE `id`=?;";
+         "`pokemon`.`CharactersMonster` SET `monsterId`=?, `attackId1`=?, `attackId2`=?, `attackId3`=?, `attackId4`=?, `level`=?, `slotNr`=?, `health`=?,`mana`=?, `speed`=?, `attack`=?, `defense`=?, `maxMana`=?, `maxHealth`=?,`exp`=? WHERE `id`=?;";
 
          connection.query(queryString,[monsterId,attack1, attack2, attack3, attack4, level, slot, hp, mana, speed, attack, defense, maxMana, maxHp, xp, id],function (err,rows,fields){
            if(err)
@@ -258,7 +258,7 @@ module.exports = function (apiRoutes,connection) {
         var newY = req.body.y;
 
         var queryString = 'UPDATE' +
-         "`Pallettown`.`Character` SET `x`=?, `y`=?, `areaId`= ? WHERE `id`=?;";
+         "`pokemon`.`Character` SET `x`=?, `y`=?, `areaId`= ? WHERE `id`=?;";
 
          connection.query(queryString,[newX,newY,newArea,characterId],function (err,rows,fields){
            if(err)
@@ -302,7 +302,7 @@ module.exports = function (apiRoutes,connection) {
 
 
         var queryString = "INSERT INTO " +
-            "`Pallettown`.`CharactersMonster` (`characterId`,`monsterId`,`attackId1`,`attackId2`,`attackId3`,`attackId4`, `level`, `slotNr`,`health`,`mana`,`speed`,`attack`,`defense`,`maxMana`,`maxHealth`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            "`pokemon`.`CharactersMonster` (`characterId`,`monsterId`,`attackId1`,`attackId2`,`attackId3`,`attackId4`, `level`, `slotNr`,`health`,`mana`,`speed`,`attack`,`defense`,`maxMana`,`maxHealth`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             connection.query(queryString,[charId,monsterId,attackId1,attackId2,attackId3,attackId4,level,slotNr,health,mana,speed,attack,defense,maxMana,maxHp], function(err,rows,fields){
               if(err)

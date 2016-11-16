@@ -7,7 +7,7 @@ module.exports = function (apiRoutes,connection) {
     apiRoutes.get('/attack',function (req,res) {
 
         var qureyString = 'SELECT * ' +
-            'FROM Pallettown.Attack;';
+            'FROM pokemon.Attack;';
 
         connection.query(qureyString, function (err, rows, fields) {
             if (err) {
@@ -29,7 +29,7 @@ module.exports = function (apiRoutes,connection) {
         var attackIds = JSON.parse(req.params.id);
 
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.Attack ' +
+            'FROM pokemon.Attack ' +
             'WHERE Attack.id IN (?';
           if(attackIds.length > 1) {
             for (var i = 1; i < attackIds.length; i++) {
@@ -62,7 +62,7 @@ module.exports = function (apiRoutes,connection) {
         attackTypes = attackTypes.replace(" ", "");
         var types = attackTypes.split(",");
         var queryString = 'SELECT * ' +
-            'FROM Pallettown.Attack ' +
+            'FROM pokemon.Attack ' +
             'WHERE type = ?';
 
         for (var i = 1; i < types.length; i++) {
