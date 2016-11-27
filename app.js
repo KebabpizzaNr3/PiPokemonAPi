@@ -42,7 +42,7 @@ apiRoutes.post('/login', function(req, res){
     //before you get the token
 
     //get user from database
-    var qureyString = 'SELECT * FROM Pallettown.User WHERE User.Username = ? AND User.Password = ?;';
+    var qureyString = 'SELECT * FROM pokemon.User WHERE User.Username = ? AND User.Password = ?;';
 
     connection.query(qureyString,[req.body.Username,req.body.Password],function (err, rows, fields) {
         if (err || rows.length !== 1)
@@ -80,7 +80,7 @@ apiRoutes.post('/signup', function (req,res) {
     var mess = "All went well";
 
     var queryString = "INSERT INTO " +
-        "`Pallettown`.`User` ( `Username`, `Password`,`characterId` ) VALUES (?, ?, ?);";
+        "`pokemon`.`User` ( `Username`, `Password`,`characterId` ) VALUES (?, ?, ?);";
 
     connection.query(queryString,[username,password, characterid],function (err,rows,fields) {
         if(err)
@@ -93,7 +93,7 @@ apiRoutes.post('/signup', function (req,res) {
 
     for(var i=1;i<5;i++){
       var queryString = "INSERT INTO " +
-       "`Pallettown`.`CharactersItem` (`characterId`, `itemId`, `amount`) VALUES (?,?,0);";
+       "`pokemon`.`CharactersItem` (`characterId`, `itemId`, `amount`) VALUES (?,?,0);";
 
        connection.query(queryString,[characterid,i],function (err,rows,fields){
          if(err)
@@ -115,7 +115,7 @@ apiRoutes.post('/charcreate', function (req,res) {
     var charname = req.body.Charname;
 
     var queryString = "INSERT INTO " +
-        "`Pallettown`.`Character` (`name`) VALUES (?);";
+        "`pokemon`.`Character` (`name`) VALUES (?);";
 
         connection.query(queryString,[charname], function(err,rows,fields){
           if(err)
